@@ -11,5 +11,8 @@ Before starting, download files from github to your local machine.
 2. Click on your followers
 3. Inspect the HTML elements of the page. On Chrome, press fn + f12
 4. Navigate to the "Elements" tab at the top of the developer tools
-5. Right click the <html> tag on the second line. Then, Copy -> Copy element
-6. Paste the HTML into 
+5. Right-click the <html> tag on the second line. Then, Copy -> Copy element
+6. Make sure the `followers.html` file is empty. Then, paste your clipboard to `followers.html`.
+7. Repeat steps 2-6, but with your following. Use the `following.html` file.
+8. Right click `scraper.py` and run the program.
+9. Data will be output into the files in the `/Output` directory.
