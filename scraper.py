@@ -2,9 +2,13 @@ from bs4 import BeautifulSoup
 
 # value of 0 means <->, 1 means only follower, -1 means only following
 names = {}
+followers = 0
+following = 0
 
 
 def scrape_html(file):
+    global followers
+    global following
     with open(file) as html_file:
         content = html_file.read()
         soup = BeautifulSoup(content, 'lxml')
@@ -17,8 +21,10 @@ def scrape_html(file):
                 name_element = name_container.div.div.div.div.div.a.div.div.span
                 name_string = name_element.text
                 if file == './input/followers.html':
+                    followers += 1
                     names[name_string] = 1
                 elif file == './input/following.html':
+                    following += 1
                     if name_element.text in names:
                         names[name_string] = 1
                     else:
@@ -33,7 +39,7 @@ def scrape_html(file):
 scrape_html('./input/followers.html')
 scrape_html('./input/following.html')
 # dictionary is ready to be analyzed
-
-
+print(f'Followers: {followers}')
+print(f'Following: {following}')
 
 print("Done scraping.")
