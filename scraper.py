@@ -26,7 +26,7 @@ def scrape_html(file):
                 elif file == './input/following.html':
                     following += 1
                     if name_element.text in names:
-                        names[name_string] = 1
+                        names[name_string] = 0
                     else:
                         names[name_string] = -1
                 else:
@@ -38,8 +38,23 @@ def scrape_html(file):
 
 scrape_html('./input/followers.html')
 scrape_html('./input/following.html')
-# dictionary is ready to be analyzed
+# dictionary is ready to be analyzed...
+
 print(f'Followers: {followers}')
 print(f'Following: {following}')
+
+with open('./output/statistics.txt', 'w') as file:
+    file.write(f'Followers: {followers}\n')
+    file.write(f'Following: {following}\n')
+
+with open('./output/following_you', 'w') as file:
+    for name, num in names.items():
+        if num == 1:
+            file.write(f'{name}\n')
+
+with open('./output/you_follow', 'w') as file:
+    for name, num in names.items():
+        if num == -1:
+            file.write(f'{name}\n')
 
 print("Done scraping.")
